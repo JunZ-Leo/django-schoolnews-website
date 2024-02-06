@@ -1,0 +1,28 @@
+{% extends 'front/base.html' %}
+{% load static %}
+        {% block body_block %}
+		<!--inside content start-->
+		<div class="inside_wrap">
+			<div class="inside_con">
+				<div class="adr">
+					<a href="index.html">首页</a>&nbsp;>&nbsp;中心概况
+				</div>
+				<div class="inside_box">
+					<div class="sidemenu fl">
+						<div class="s_title">中心概况</div>
+						<ul>
+							<li class="on"><a href="{% url 'front_center_profile' %}">中心概况</a></li>
+						</ul>
+					</div>
+					<div class="ic_wrap fr">
+						<p>河北工业大学众创空间超算中心实验室可追溯于xxxx年成立的学校的计算机中心，始终致力于机器学习、数值优化、深度学习与计算机视觉、物联网智能等研究。
+                           计算中心拥有xxx校区九号楼3楼一层，xx综合楼4楼、5楼、6楼部分，共有实验室xxx间，总面积xxxxx平方米，实验机位xxxxx个，仪器设备固定资产台件数为xxx台，其中10万元以上设备xx台，总值xxxx万元。
+							众创空间超算中心承担河北工业大学计算机学科的计算机科学与技术、软件工程、物联网工程,网络工程4个本科专业，实验项目数xxxx个，其中基本验证型实验xxx个，占比xxxx%，综合设计型实验xxxx个，占比xxxxx%，研究探索型实验xxxx个，占比xxxxx%。承担了年均xxxx名学生的实验教学任务，近5年实验教学人时数达到年均xxxxx学时。
+                           以xxx等多名博士和学术骨干组成的导师团队，研究成果丰硕，共有项目xx项，其中省部级以上项目xx项，横向课题转化xx万；发表论文xx篇，其中SCI xx篇、EI xx篇；授权专利xx件，发明专利xx件；发表决策咨询报告xx篇。在人才培养方面，累计培养学生xx人，获批省级以上项目xx项，获奖xx项，共有学生发明人xx人次，学生论文作者xx人次。
+                           在学校及各职能部门关心支持下，经数十年几代人的努力发展与建设，中心教学环境和办学条件得到进一步发展，已建成以学生为本、教学体系科学、实验设施完善、队伍结构合理的开放式计算机实验教学中心。面对以计算技术为先导的IT信息时代，计算中心正以创新的思维、改革的勇气、开放的理念，竭诚为学校和社会服务。欢迎同学们前来加入我们，也欢迎校内外人士参观指导。</p>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+        {% endblock %}

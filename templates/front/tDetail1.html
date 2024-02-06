@@ -1,0 +1,39 @@
+{% extends 'front/base.html' %}
+{% load static %}
+        {% block body_block %}
+		<!--inside content start-->
+		<div class="inside_wrap">
+			<div class="inside_con">
+				<div class="adr">
+					<a href="index.html">首页</a>&nbsp;>&nbsp;研究资源&nbsp;>&nbsp;文献资料
+				</div>
+				<div class="inside_box">
+					<div class="sidemenu fl">
+						<div class="s_title">研究资源</div>
+						<ul>
+							<li><a href="{% url 'front_book_resource' %}">文献资料</a></li>
+							<li><a href="{% url 'front_learn_resource' %}">学习资料</a></li>
+							<li class="on"><a href="{% url 'front_teach_video' %}">教学视频</a></li>
+						</ul>
+					</div>
+					<div class="ic_wrap fr">
+						<h3 class="n_title">{{bookresource.title}}<span class="n_date">{{bookresource.publisher}}</span></h3>
+						<p>{{bookresource.content|safe}}</p>
+						<div class="n_link">
+	                        <ul>
+								{% if last_bookresource.id %}
+	                            <li>上一条<a href="{% url 'front_book_resource_detail' %}?id={{last_bookresource.id}}">{{last_bookresource.title}}</a><span class="date">{{last_bookresource.create_time}}</span></li>
+								{% endif %}
+								{% if next_bookresource.id %}
+	                            <li>下一条<a href="{% url 'front_book_resource_detail' %}?id={{next_bookresource.id}}">{{next_bookresource.title}}</a><span class="date">{{next_bookresource.create_time}}</span></li>
+								{% endif %}
+	                        </ul>
+	                    </div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+        {% endblock %}
+
+

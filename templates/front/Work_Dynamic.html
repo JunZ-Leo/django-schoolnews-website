@@ -1,0 +1,36 @@
+{% extends 'front/base.html' %}
+{% load static %}
+        {% block body_block %}
+		<div class="inside_wrap">
+			<div class="inside_con">
+				<div class="adr">
+					<a href="index.html">首页</a>&nbsp;>&nbsp;新闻热点&nbsp;>&nbsp;教育新闻
+				</div>
+				<div class="inside_box">
+					<div class="sidemenu fl">
+						<div class="s_title">新闻热点</div>
+						<ul>
+							<li><a href="news.html">教育新闻</a></li>
+							<li class="on"><a href="news.html">工作动态</a></li>
+						</ul>
+					</div>
+					<div class="ic_wrap fr">
+						<h3 class="n_title">{{works.title}}<span class="n_date">发布日期：{{works.create_time}}</span></h3>
+						<p>{{works.content|safe}}</p>
+						<div class="n_link">
+	                        <ul>
+	                           {% if last_works.id %}
+	                            <li>上一条<a href="{% url 'front_work_dynamic_detail' %}?id={{last_works.id}}">{{last_works.title}}</a><span class="date">{{last_works.create_time}}</span></li>
+								{% endif %}
+								{% if next_works.id %}
+	                            <li>下一条<a href="{% url 'front_work_dynamic_detail' %}?id={{next_works.id}}">{{next_works.title}}</a><span class="date">{{next_works.create_time}}</span></li>
+								{% endif %}
+	                        </ul>
+	                    </div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+        {% endblock %}
+

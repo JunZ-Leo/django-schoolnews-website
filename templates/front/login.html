@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<title>Business Login Form Responsive Widget Template :: cssmoban</title>
+ <!-- Meta-Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Business Login Form a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+	<script src="{% static 'front/js/jquery-1.11.0.min.js' %}" type="text/javascript"></script>
+	<script src="{% static 'front/js/jquery.SuperSlide.2.1.js' %}" type="text/javascript"></script>
+	<script src="{% static 'front/js/common.js' %}"></script>
+	<script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+		// function jump() {
+        //     window.open("index.html");
+        // }
+       //function login(){
+          //var username=$('.username').val();
+         // var password=$('.password').val();
+	       //var post_data={"username":username,"password":password};
+	       //$.ajax({
+	          // type:'post',
+	         //  contentType:'application/json',
+	         //  dataType:'json',
+	         //  data:JSON.stringify(post_data),
+	         //  url:'http://127.0.0.1:8000/login',
+	         //  success: function (result) {
+	          //   if (result.code == 200)
+	           // {
+	          //    alert('登录成功');
+	          //  }else{
+	          //    alert(result.error)
+	          //  }
+	         //  }
+	      // })
+      //  }
+    </script>
+	<style>
+	.top{
+		margin-left: 200px;
+	}
+	.top .logo img {
+	margin-top: 10px;
+	width: 463px;
+	height: 94px;
+     }
+	body .signupform .footer{
+		 bottom: 50px;
+	 }
+	 body .signupform .container .agile_info .w3_info form .submit{
+		display:block;
+		 width: 60px;
+		 height: 40px;
+             color: rgb(244, 244, 247);
+			 background: rgb(57, 6, 240);
+			 line-height:40px;
+			 text-align: center;
+
+	 }
+	</style>
+    <!-- //Meta-Tags -->
+	<div class="top">
+		<a class="logo"><img src="{% static 'front/images/logo.png' %}" /></a>
+	</div>
+	<!-- css files -->
+	<link href="{% static 'front/css/login.font-awesome.min.css' %}" rel="stylesheet" type="text/css" media="all">
+	<link href="{% static 'front/css/login.css' %}" rel="stylesheet" type="text/css" media="all"/>
+	<!-- //css files -->
+	
+	<!-- google fonts -->
+	<link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+	<!-- //google fonts -->
+	
+</head>
+<body>
+<div class="adcenter"><script src="http://www.cssmoban.com/include/new/ggad2_728x90.js"></script></div>
+<div class="signupform">
+	<div class="container">
+		<!-- main content -->
+		<div class="agile_info">
+			<div class="w3l_form">
+				<div class="left_grid_info">
+					<h1>众创空间超算中心</h1>
+					<p>Computer center of XXXX University</p>
+					<img src="{% static 'front/images/image.jpg' %}" alt="" />
+				</div>
+			</div>
+			<div class="w3_info">
+				<h2>登录</h2>
+				<form action="#" method="post" action="{% url 'front_login' %}">
+					{% csrf_token %}
+					<label>用户名</label>
+					<div class="input-group">
+						<span class="fa fa-envelope" aria-hidden="true"></span>
+						<input type="text" value ="" required="" name="username" class="username">
+					</div>
+					<label>密码</label>
+					<div class="input-group">
+						<span class="fa fa-lock" aria-hidden="true"></span>
+						<input type="Password" value ="" required="" name="password" class="password">
+					</div> 
+					<!-- <div class="login-check">
+						 <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Remember me</label>
+					</div>						 -->
+						
+							<!-- <button class="btn btn-danger btn-block"  type="submit"> -->
+								<input type="submit" class="submit" value="登录" onclick="login()" />
+							<!-- </button > -->
+						       
+				</form>
+				<!-- <p class="account">By clicking login, you agree to our <a href="#">Terms & Conditions!</a></p> -->
+				<p class="account1"><a href="{% url  'front_register' %}">注册</a></p>
+			</div>
+		</div>
+		<!-- //main content -->
+	</div>
+	<!-- footer -->
+	<div class="footer">
+		<p>版权所有：河北工业大学计算机中心</p>
+        <p>电话：022-60438000&nbsp;&nbsp;&nbsp;邮箱：xiaozhang@hebut.edu.cn</p>
+        <p>地址：天津市北辰区西平道 5340 号</p>
+	</div>
+	<!-- footer -->
+</div>
+	
+<style>
+.copyrights{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
+</style>
+<div class="copyrights" id="links20210126">
+	Collect from <a href="http://www.cssmoban.com/"  title="网站模板">模板之家</a>
+	<a href="http://cooco.net.cn/" title="组卷网">组卷网</a>
+</div>
+</body>
+</html>

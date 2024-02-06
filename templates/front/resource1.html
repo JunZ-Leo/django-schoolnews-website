@@ -1,0 +1,35 @@
+{% extends 'front/base.html' %}
+{% load static %}
+        {% block body_block %}
+		<!--inside content start-->
+		<div class="inside_wrap">
+			<div class="inside_con">
+				<div class="adr">
+					<a href="index.html">首页</a>&nbsp;>&nbsp;教学资源>&nbsp;教学视频
+				</div>
+				<div class="inside_box">
+					<div class="sidemenu fl">
+						<div class="s_title">教学资源</div>
+						<ul>
+							<li><a href="{% url 'front_book_resource' %}">文献资料</a></li>
+							<li><a href="{% url 'front_learn_resource' %}">学习资料</a></li>
+							<li class="on"><a href="{% url 'front_teach_video' %}">教学视频</a></li>
+						</ul>
+					</div>
+					<div class="ic_wrap fr">
+						<ul class="img_list src_list" style="display:flex;justify-content:space-around;">
+							{% for t in videos %}
+							<li style="width:300px;height:400px"><a href="vDetail.html"><video poster="/static/front/image/{{t.image}}" width="300" height="300" controls><source type="video/mp4" src="{{MEDIA_URL}}{{t.video}}" ></video><span>{{t.title}}</span></a></li>
+						    {% endfor %}
+						</ul>
+						<!--分页-->
+						<div class="record">
+
+	                    </div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+        {% endblock %}
+

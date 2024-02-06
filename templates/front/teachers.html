@@ -1,0 +1,51 @@
+{% extends 'front/base.html' %}
+{% load static %}
+        {% block body_block %}
+		<!--inside content start-->
+		<div class="inside_wrap">
+			<div class="inside_con">
+				<div class="adr">
+					<a href="index.html">首页</a>&nbsp;>&nbsp;研究人员&nbsp;>&nbsp;专家资源
+				</div>
+				<div class="inside_box">
+					<div class="sidemenu fl">
+						<div class="s_title">研究人员</div>
+						<ul>
+							<li class="on"><a href="{% url 'front_researcher' %}">专家资源</a></li>
+							<li><a href="{% url 'front_researcher_detail' %}">专家介绍</a></li>
+						</ul>
+					</div>
+					<div class="ic_wrap fr">
+						<ul class="news_list">
+							{% for t in c_page %}
+							<li><a href="{% url 'front_researcher_resource' %}?name={{t.name}}">{{ t.title }}</a><span class="date">{{t.create_time}}</span></li>
+						    {% endfor %}
+						</ul>
+						<div class="record">
+	                        {% if c_page.has_previous %}
+								    <a href="/Researcher?page={{ c_page.previous_page_number }}">上一页</a>
+								{% else %}
+								    上一页
+								{% endif %}
+
+								{% for p_num in paginator.page_range %}
+								     {% if p_num == c_page.number %}
+								          {{p_num}}
+								     {% else %}
+								          <a href="/Researcher?page={{p_num}}">{{p_num}}</a>
+								     {% endif %}
+								{% endfor %}
+
+								{% if c_page.has_next %}
+								   <a href="/Researcher?page={{ c_page.next_page_number }}">下一页</a>
+								{% else %}
+								   下一页
+								{% endif %}
+	                    </div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+        {% endblock %}
+

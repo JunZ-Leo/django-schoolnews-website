@@ -1,0 +1,51 @@
+{% extends 'front/base.html' %}
+{% load static %}
+        {% block body_block %}
+		<!--inside content start-->
+		<div class="inside_wrap">
+			<div class="inside_con">
+				<div class="adr">
+					<a href="index.html">首页</a>&nbsp;>&nbsp;研究成果&nbsp;>&nbsp;项目中心
+				</div>
+				<div class="inside_box">
+					<div class="sidemenu fl">
+						<div class="s_title">研究成果</div>
+						<ul>
+							<li><a href="{% url 'front_researchGain_index' %}">专利成果</a></li>
+							<li class="on"><a href="{% url 'front_projects_center' %}">项目中心</a></li>
+						</ul>
+					</div>
+					<div class="ic_wrap fr">
+						<ul class="news_list">
+							{% for t in c_page %}
+							<li><a href="{% url 'front_projects_detail' %}?id={{t.id}}">{{t.title}}</a></li>
+							{% endfor %}
+						</ul>
+						<!--分页-->
+						<div class="record">
+	                        {% if c_page.has_previous %}
+								    <a href="/Projects_Center?page={{ c_page.previous_page_number }}">上一页</a>
+								{% else %}
+								    上一页
+								{% endif %}
+
+								{% for p_num in paginator.page_range %}
+								     {% if p_num == c_page.number %}
+								          {{p_num}}
+								     {% else %}
+								          <a href="/Projects_Center?page={{p_num}}">{{p_num}}</a>
+								     {% endif %}
+								{% endfor %}
+
+								{% if c_page.has_next %}
+								   <a href="/Projects_Center?page={{ c_page.next_page_number }}">下一页</a>
+								{% else %}
+								   下一页
+								{% endif %}
+	                    </div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+        {% endblock %}

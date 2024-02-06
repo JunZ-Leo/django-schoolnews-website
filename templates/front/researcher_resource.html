@@ -1,0 +1,36 @@
+{% extends 'front/base.html' %}
+{% load static %}
+        {% block body_block %}
+		<!--inside content start-->
+		<div class="inside_wrap">
+			<div class="inside_con">
+				<div class="adr">
+					<a href="{% url 'front_index' %}">首页</a>&nbsp;>&nbsp;新闻热点&nbsp;>&nbsp;教育新闻
+				</div>
+				<div class="inside_box">
+					<div class="sidemenu fl">
+						<div class="s_title">新闻热点</div>
+						<ul>
+							<li class="on"><a href="{% url 'front_news_index' %}">教育新闻</a></li>
+							<li><a href="{% url 'front_news_index' %}">工作动态</a></li>
+						</ul>
+					</div>
+					<div class="ic_wrap fr">
+						<h3 class="n_title">{{researcher.title}}<span class="n_date">{{researcher.name}}</span></h3>
+						<p>{{researcher.content|safe}}</p>
+						<div class="n_link">
+	                        <ul>
+								{% if last_researcher.name %}
+	                            <li>上一条<a href="{% url 'front_researcher_resource' %}?name={{last_researcher.name}}">{{last_researcher.title}}</a><span class="date">{{last_researcher.create_time}}</span></li>
+								{% endif %}
+								{% if next_researcher.name %}
+	                            <li>下一条<a href="{% url 'front_researcher_resource' %}?name={{next_researcher.name}}">{{next_researcher.title}}</a><span class="date">{{next_researcher.create_time}}</span></li>
+								{% endif %}
+	                        </ul>
+	                    </div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		{% endblock %}

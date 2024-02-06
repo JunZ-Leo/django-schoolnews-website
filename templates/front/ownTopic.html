@@ -1,0 +1,95 @@
+{% extends 'front/base.html' %}
+{% load static %}
+        {% block body_block %}
+		<!--inside content start-->
+		<div class="inside_wrap">
+			<div class="inside_con">
+				<div class="adr">
+					<a href="index.html">首页</a>&nbsp;>&nbsp;用户相关>&nbsp;个人中心
+				</div>
+				<div class="inside_box">
+					<div class="sidemenu fl">
+						<div class="s_title">用户相关</div>
+						<ul>
+							<li><a href="{% url 'front_personal_center' %}">个人中心</a></li>
+							<li class="on"><a href="{% url 'front_topic' %}">我的话题</a></li>
+						</ul>
+					</div>
+					<div class="ic_wrap fr">
+						<div class="personal_box">
+							<div class="tl_list">
+							<ul>
+								{% if c_page %}
+								{% else %}
+								<li>
+									<h2>空空如也</h2>
+								</li>
+								{% endif %}
+								{%for t in c_page%}
+									<li>
+										<a href="{% url 'front_topic_detail' %}?id={{t.id}}#reply" class="reply">{{t.comment_number}}回复</a>
+										<div class="t_con">
+											<h3><a href="{% url 'front_topic_detail'%}?id={{t.id}}">{{t.title}}</a><span class="addressor">发布者：{{ t.username }}&nbsp;&nbsp;&nbsp;发布日期：{{ t.create_time }}&nbsp;&nbsp;&nbsp;</span></h3>
+											<p>{{ t.sumary|safe }}...</p>
+										</div>
+									</li>
+								{%endfor%}
+								</ul>
+								{% if c_page.has_previous %}
+								    <a href="/myTopic?page={{ c_page.previous_page_number }}">上一页</a>
+								{% else %}
+								    上一页
+								{% endif %}
+
+								{% for p_num in paginator.page_range %}
+								     {% if p_num == c_page.number %}
+								          {{p_num}}
+								     {% else %}
+								          <a href="/myTopic?page={{p_num}}">{{p_num}}</a>
+								     {% endif %}
+								{% endfor %}
+
+								{% if c_page.has_next %}
+								   <a href="/myTopic?page={{ c_page.next_page_number }}">下一页</a>
+								{% else %}
+								   下一页
+								{% endif %}
+							</div>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		<!--footer start-->
+        {% endblock %}
+        {% block script %}
+		<script src="{% static 'front/js/jquery-1.11.0.min.js'%}" type="text/javascript"></script>
+		<script src="{% static 'front/js/jquery.SuperSlide.2.1.js' %}" type="text/javascript"></script>
+		<script src="{% static 'front/js/common.js' %}"></script>
+		<script src="{% static 'front/js/iscroll-zoom.js' %}"></script>
+		<script src="{% static 'front/js/hammer.js' %}"></script>
+		<script src="{% static 'front/js/lrz.all.bundle.js' %}"></script>
+		<script src="{% static 'front/js/jquery.photoClip.js' %}"></script>
+		<script type="text/javascript">
+		//document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+		var clipArea = new bjj.PhotoClip("#clipArea", {
+			size: [260, 260],
+			outputSize: [640, 640],
+			file: "#file",
+			view: "#view",
+			ok: "#clipBtn",
+			loadStart: function() {
+				console.log("照片读取中");
+			},
+			loadComplete: function() {
+				console.log("照片读取完成");
+			},
+			clipFinish: function(dataURL) {
+				console.log(dataURL);
+			}
+		});
+		//clipArea.destroy();
+
+		</script>
+        {% endblock %}

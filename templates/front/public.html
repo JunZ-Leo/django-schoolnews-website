@@ -1,0 +1,46 @@
+{% extends 'front/base.html' %}
+{% load static %}
+        {% block link %}
+        <link rel="stylesheet" href="{% static 'front/css/style.css' %}" />
+        {% endblock %}
+        {% block body_block %}
+		<div class="inside_wrap">
+			<div class="inside_con">
+				<div class="adr">
+					<a href="index.html">首页</a>&nbsp;>&nbsp;中心论坛>&nbsp;发布话题
+				</div>
+				<div class="inside_box">
+					<div class="public_wrap">
+						<div class="public_box">
+							<h2>发布话题:<span class="tishi">在这里你可以发布问题、感想、经验、心得等话题，自由发布自由交流</span></h2>
+							<form action="{% url 'front_topic_edit' %}" method="post">
+								{% csrf_token %}
+								<label for="title">话题标题:<span class="tishi">简短一些让其他人快速了解你的话题</span></label>
+								<textarea name="title" id="title" value=""></textarea>
+								<div class="editor">
+									<label for="title">话题内容:</label>
+									<section id="editor">
+                                         <textarea name="tinymce" class="tinymce"></textarea>
+									</section>
+								    <button type="submit" class="btn submit_btn">发表</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        {% endblock %}
+        {% block script %}
+
+        <script src="{% static 'front/js/tinymce/tinymce.js' %}"></script>
+		<script type="text/javascript">
+			tinymce.init({
+			   'selector':'textarea.tinymce',
+			    language:'zh_CN',
+                plugins: "image,link",
+                toolbar: "image,link",
+                })
+		</script>
+
+        {% endblock %}

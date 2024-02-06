@@ -1,0 +1,27 @@
+{% extends 'front/base.html' %}
+{% load static %}
+        {% block body_block %}
+		<!--inside content start-->
+		<div class="inside_wrap">
+			<div class="inside_con">
+				<div class="adr">
+					<a href="index.html">首页</a>&nbsp;>&nbsp;项目研究&nbsp;>&nbsp;项目中心
+				</div>
+				<div class="inside_box">
+					<div class="sidemenu fl">
+						<div class="s_title">项目研究</div>
+						<ul>
+							<li class="on"><a href="{% url 'front_researchGain_index' %}">专利成果</a></li>
+							<li><a href="{% url 'front_projects_center' %}">项目中心</a></li>
+						</ul>
+					</div>
+					<div class="ic_wrap fr">
+						<h3 class="n_title">{{project.title}}<span class="n_date">负责人：{{project.responsible_person}}</span></h3>
+						<p>{{project.content|safe}}</p>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+　　　　　{% endblock %}
+

@@ -1,0 +1,88 @@
+{% extends 'front/base.html' %}
+{% load static %}
+        {% block body_block %}
+		<div class="inside_wrap">
+			<div class="inside_con">
+				<div class="adr">
+					<a href="index.html">首页</a>&nbsp;>&nbsp;中心论坛
+				</div>
+				<div class="inside_box">
+					<div class="topic_wrap fl">
+						<div class="t_label">
+							<div class="tl_tab fl">
+								<a href="" id="hot_week" class="active">本周热门</a>
+								<a href="" id="newest">最新发表</a>
+							</div>
+							<div class="search fr">
+								<form method="post" action="{% url 'front_center_forum' %}">
+									{% csrf_token %}
+								    <input type="text" name="search_text" id="topic" value="" placeholder="请输入话题名称" class="input_tp" />
+								    <input type="submit" class="search2" value="搜索" />
+								</form>
+							</div>
+						</div>
+						<div class="tl_list">
+							<ul>
+								{%for t in c_page%}
+								<li>
+									<a href="{% url 'front_topic_detail' %}?id={{t.id}}#reply" class="reply">{{t.comment_number}}条评论</a>
+									<div class="t_con">
+										<h3><a href="{% url 'front_topic_detail'%}?id={{t.id}}">{{t.topic_title}}</a><span class="addressor">发布者：{{t.username}}&nbsp;&nbsp;&nbsp;发布日期：{{ t.create_time }}&nbsp;&nbsp;&nbsp;</span></h3>
+										<p>{{t.sumary|safe}}...</p>
+									</div>
+								</li>
+								{% endfor %}
+							</ul>
+						</div>
+						<!--分页-->
+						<div class="record">
+	                        {% if c_page.has_previous %}
+								    <a href="/Center_forum?page={{ c_page.previous_page_number }}" onclick="pre">上一页</a>
+								{% else %}
+								    上一页
+								{% endif %}
+
+								{% for p_num in paginator.page_range %}
+								     {% if p_num == c_page.number %}
+								          {{p_num}}
+								     {% else %}
+								          <a href="/Center_forum?page={{p_num}}">{{p_num}}</a>
+								     {% endif %}
+								{% endfor %}
+
+								{% if c_page.has_next %}
+								   <a href="/Center_forum?page={{ c_page.next_page_number }}">下一页</a>
+								{% else %}
+								   下一页
+							{% endif %}
+	                    </div>
+					</div>
+					<div class="topic_list fr">
+						<a href="{% url 'front_topic_edit' %}"><button type="button" class="btn">发布话题</button></a>
+						<div class="lively_user">
+							<h4>活跃用户</h4>
+							<ul>
+								{% for k in order %}
+								<li>
+									<div class="h_img">
+										<img src="{{k.avatar}}" />
+									</div>
+									<div class="h_text">
+										<b>{{k.username}}</b>
+										<p>发表了{{k.comment_number}}个话题</p>
+									</div>
+								</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		{% endblock %}
+        {% block script %}
+		<script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
+		<script src="js/jquery.SuperSlide.2.1.js" type="text/javascript"></script>
+		<script src="js/common.js"></script>
+	    {% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'front/base.html' %}
+{% load static %}
+        {% block body_block %}
+		<!--inside content start-->
+		<div class="inside_wrap">
+			<div class="inside_con">
+				<div class="adr">
+					<a href="index.html">首页</a>&nbsp;>&nbsp;用户相关>&nbsp;个人中心
+				</div>
+				<div class="inside_box">
+					<div class="sidemenu fl">
+						<div class="s_title">用户相关</div>
+						<ul>
+							<li class="on"><a href="{% url 'front_personal_center' %}">个人中心</a></li>
+							<li><a href="{% url 'front_topic' %}">我的话题</a></li>
+						</ul>
+					</div>
+					<div class="ic_wrap fr">
+						<div class="personal_box">
+							<div class="touxiang">
+								<h2>设置头像</h2>
+								<div id="clipArea"></div>
+								<div class="pb_wrap">
+									<input type="file" id="file" name="per_picture">
+									<button id="clipBtn">截取</button>
+								</div>
+								<div id="view"></div>
+							</div>
+							<div class="info_box">
+								<h2>基本信息</h2>
+								<form action="{% url 'front_personal_center'%}" method="post" class="form1">
+									{% csrf_token %}
+									<label for="file">图片URL</label>
+									<input type="text" name="avatar" id="avatar" value="" placeholder="" maxlength="10000000000"/>
+									<label for="name">用户名称</label>
+									<input type="text" name="username" id="name" value="{{username}}" readonly/>
+									<label for="nc">设置昵称</label>
+									<input type="text" name="nickname" id="nc" value="" placeholder="{{nickname}}" />
+									<label for="qm">个性签名</label>
+									<input type="text" name="info" id="qm" value="" placeholder="{{info}}" />
+									<label for="email">电子邮箱：</label>
+									<input type="email" name="email" id="email" value="" placeholder="{{email}}" />
+									<button type="reset" class="anew">重置</button>
+									<button type="submit" class="btn">保存</button>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+        {% endblock %}
+        {% block script %}
+		<script src="{% static 'front/js/jquery-1.11.0.min.js' %}" type="text/javascript"></script>
+		<script src="{% static 'front/js/jquery.SuperSlide.2.1.js' %}" type="text/javascript"></script>
+		<script src="{% static 'front/js/common.js' %}"></script>
+		<script src="{% static 'front/js/iscroll-zoom.js' %}"></script>
+		<script src="{% static 'front/js/hammer.js' %}"></script>
+		<script src="{% static 'front/js/lrz.all.bundle.js' %}"></script>
+		<script src="{% static 'front/js/jquery.photoClip.js' %}"></script>
+        <script type="text/javascript" src="{% static 'front/js/jquerysession.js' %}"></script>
+		<script>
+		//document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+		var PIC_URL
+		var clipArea = new bjj.PhotoClip("#clipArea", {
+			size: [260, 260],
+			outputSize: [640, 640],
+			file: "#file",
+			view: "#view",
+			ok: "#clipBtn",
+			loadStart: function() {
+				console.log("照片读取中");
+			},
+			loadComplete: function() {
+				console.log("照片读取完成");
+			},
+			clipFinish: function(dataURL) {
+			    PIC_URL = dataURL
+				console.log(dataURL);
+			}
+		});
+		$('#clipBtn').click(function(){
+		     $('#avatar').val(PIC_URL)
+		});
+        $('#anew').click(function(){
+             $('form1 input').val('')
+        });
+		//clipArea.destroy();
+		</script>
+        {% endblock %}
